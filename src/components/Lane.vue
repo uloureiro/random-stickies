@@ -1,42 +1,51 @@
 <template>
   <v-hover v-slot:default="{ hover }">
     <v-card class="pa-5 ma-3 pt-0" elevation="5" style="height:100%" :color="color">
-      <v-container class="pt-0 pb-5 ma-0 pt-3">
-        <v-row justify="end" no-gutters>
-          <v-col cols="12">
-            <v-row style="height: 2px" justify="end" no-gutters>
-              <v-fade-transition>
-                <v-btn
-                  dark
-                  color="grey darken-1"
-                  v-if="hover"
-                  fab
-                  small
-                  v-on:click="addSticky"
-                  alt="Add sticky"
-                  class="mr-3"
-                >
-                  <v-icon>mdi-plus</v-icon>
-                </v-btn>
-              </v-fade-transition>
-              <v-menu
-                :close-on-content-click="false"
-                :nudge-width="200"
-                offset-y
-              >                
-                <template v-slot:activator="{ on }">
-                  <v-fade-transition>
-                    <v-btn dark color="grey darken-1" v-if="hover" fab small alt="Edit lane" v-on="on">
-                      <v-icon>mdi-pencil</v-icon>
-                    </v-btn>
-                  </v-fade-transition>
-                </template>
-                <v-color-picker class="ma-2" show-swatches swatches-max-height="200px" mode="hexa" hide-mode-switch v-model="color"></v-color-picker>
-              </v-menu>
-            </v-row>
-          </v-col>
-        </v-row>
-      </v-container>
+      <v-card-title no-gutter style="min-height:65px" class="pa-0 pt-5">
+        <span style="min-width: 95px">&nbsp;</span>
+        <v-spacer></v-spacer>
+        <div class="font-weight-light">{{ name }}</div>
+        <v-spacer></v-spacer>
+        <span style="min-width: 95px">
+        <v-fade-transition>
+          <v-btn
+            dark
+            color="grey darken-1"
+            v-if="hover"
+            small
+            fab
+            v-on:click="addSticky"
+            alt="Add sticky"
+            class="mr-3"
+          >
+            <v-icon>mdi-plus</v-icon>
+          </v-btn>
+        </v-fade-transition>
+        <v-menu
+          :close-on-content-click="false"
+          :nudge-width="200"
+          offset-y
+          absolute
+        >
+          <template v-slot:activator="{ on }">
+            <v-fade-transition>
+              <v-btn
+                dark
+                color="grey darken-1"
+                v-if="hover"
+                fab
+                small
+                alt="Edit lane"
+                v-on="on"
+              >
+                <v-icon>mdi-pencil</v-icon>
+              </v-btn>
+            </v-fade-transition>
+          </template>
+          <v-color-picker class="ma-2" show-swatches swatches-max-height="200px" mode="hexa" hide-mode-switch v-model="color"></v-color-picker>
+        </v-menu>
+        </span>
+      </v-card-title>
       <v-container fluid class="mt-1">
         <v-row>
           <v-col v-for="sticky in stickies" :key="sticky">
