@@ -1,6 +1,13 @@
 <template>
-  <v-card class="pa-2 ma-2 text--ligthen-2" elevation="3" style="min-height: 120px; min-width:250px" :color="color">
-    {{ text }}
+  <v-card class="pa-0 ma-0 border-0" color="transparent" outlined>
+    <v-textarea 
+    :value="text"
+    :background-color="color"
+    label="Add your text here..."
+    rows="5"
+    solo
+    auto-grow >
+    </v-textarea>
   </v-card>
 </template>
 
@@ -24,3 +31,9 @@
     }
   });
 </script>
+
+<style scoped>
+  .v-card {
+    min-width: 240px;
+  }
+</style>
