@@ -116,7 +116,7 @@
       </v-card-title>
       <v-container fluid class="mt-1">
         <v-row>
-          <v-col v-for="(sticky, index) in stickies" :key="index">
+          <v-col v-for="sticky in stickies" :key="sticky.id">
             <Sticky
               :id="sticky.id"
               :text="sticky.text"
@@ -133,6 +133,7 @@
 <script lang="ts">
 import Vue from "vue";
 import Sticky from "./Sticky";
+import { v4 as uuidv4 } from "uuid";
 
 export default Vue.extend({
   components: {
@@ -166,8 +167,7 @@ export default Vue.extend({
   },
   methods: {
     addSticky: function() {
-      let id = "sticky" + (this.stickiesCount + 1);
-      this.stickies.push({ id: id, text: "" });
+      this.stickies.push({ id: uuidv4(), text: "" });
     },
     removeSticky: function(id) {
       let index = this.stickies.findIndex(function(el) {
@@ -204,9 +204,6 @@ export default Vue.extend({
     },
   },
   computed: {
-    stickiesCount: function() {
-      return this.stickies.length;
-    },
     stickyColor: function() {
       return this.colorLuminance(this.colorInternal, 0.6);
     },
