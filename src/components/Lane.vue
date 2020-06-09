@@ -105,7 +105,7 @@
           <v-icon>mdi-delete-forever</v-icon>
         </v-btn>
       </v-fade-transition>
-      <v-card-title no-gutter style="min-height:65px" class="pa-0 pt-5">
+      <v-card-title no-gutters style="min-height:65px" class="pa-0 pt-5">
         <span style="min-width: 95px">&nbsp;</span>
         <v-spacer></v-spacer>
         <div class="font-weight-light" style="border: none">
@@ -244,7 +244,7 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-.fab-container {
-  position: absolute;
+.v-card__title {
+  cursor: default;
 }
 </style>
