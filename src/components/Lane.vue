@@ -152,15 +152,7 @@ export default Vue.extend({
     },
   },
   data: function() {
-    let stickies = new Array(
-      {
-        id: "sticky1",
-        text: "Sticky 1",
-      },
-      {
-        id: "sticky2",
-      }
-    );
+    let stickies = new Array();
     let nameInternal = this.name;
     let colorInternal = this.color;
     let colorPickerState = false;
