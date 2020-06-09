@@ -15,7 +15,7 @@
     <v-container fluid class="grey" style="min-height:calc(100vh - 120px);">
       <v-row>
         <v-col v-for="(lane, n) in lanes" :key="n" style="min-height:calc(100vh - 160px);">
-          <Lane :name="lane.name" :color="lane.color" />
+          <Lane :id="lane.id" :name="lane.name" :color="lane.color" />
         </v-col>
       </v-row>
     </v-container>
@@ -31,15 +31,20 @@ export default Vue.extend({
   data: () => {
     let name = "My board";
     let lanes = [
-      { name: "Lane 1" },
-      { name: "Lane 2" },
-      { name: "Lane 3 ", color: "#789789" }
+      { id: "lane1" },
+      { id: "lane2" },
+      { id: "lane3", color: "#789789" }
     ];
     return { name, lanes };
   },
   methods: {
     addLane: function() {
-      this.lanes.push({ name: "New lane" });
+      this.lanes.push({ id: "lane" + this.lanesCount, name: "New lane" });
+    }
+  },
+  computed: {
+    lanesCount: function() {
+      return this.lanes.count
     }
   }
 });
