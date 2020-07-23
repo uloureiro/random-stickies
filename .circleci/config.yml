@@ -5,7 +5,7 @@ orbs:
   node: circleci/node@3.0.1
 
 jobs:
-  build-and-publish-vue-app:
+  build-and-publish:
     docker:
       - image: 'node:12.18.2'
     steps:
@@ -20,6 +20,7 @@ jobs:
         name: Publish to gh-pages
         command: ./deploy.sh
 workflows:
-  deploy:
+  version: 2.1
+  main:
     jobs:
-      - build-and-publish-vue-app
+      - build-and-publish
