@@ -5,15 +5,13 @@ orbs:
   node: circleci/node@3.0.1
 
 jobs:
-  install-node:
+  setup-node:
     docker:
-      - image: 'cimg/base:stable'
+      - image: 'node:12.8.2'
     steps:
       - checkout
-      - node/install:
-          node-version: 12.18.2
       - run: node --version
 workflows:
   deploy:
     jobs:
-      - install-node
+      - setup-node
