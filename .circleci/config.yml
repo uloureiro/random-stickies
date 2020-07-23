@@ -5,13 +5,22 @@ orbs:
   node: circleci/node@3.0.1
 
 jobs:
-  setup-node:
+  build-and-publish-vue-app:
     docker:
       - image: 'node:12.18.2'
     steps:
       - checkout
-      - run: node --version
+      - run:
+        name: Install packages
+        command: npm install
+      - run:
+        name: Build app
+        command: npm run build
+      - run:
+        name: Publish to gh-pages
+        command: ./deploy.sh
+  publish-to-gh-pages:
 workflows:
   deploy:
     jobs:
-      - setup-node
+      - build-and-publish-vue-app
