@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/uloureiro/random-stickies.svg?branch=master)](https://travis-ci.org/uloureiro/random-stickies)
+
 # random-stickies
 
 ## Project setup
