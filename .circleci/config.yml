@@ -10,15 +10,9 @@ jobs:
       - image: 'node:12.18.2'
     steps:
       - checkout
-      - run:
-        name: Install packages
-        command: npm install
-      - run:
-        name: Build app
-        command: npm run build
-      - run:
-        name: Publish to gh-pages
-        command: ./deploy.sh
+      - run: npm install
+      - run: npm run build
+      - run: ./deploy.sh
 workflows:
   version: 2.1
   main:
