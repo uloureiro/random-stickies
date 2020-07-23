@@ -19,7 +19,6 @@ jobs:
       - run:
         name: Publish to gh-pages
         command: ./deploy.sh
-  publish-to-gh-pages:
 workflows:
   deploy:
     jobs:
