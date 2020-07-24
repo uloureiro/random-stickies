@@ -12,8 +12,13 @@ jobs:
       - checkout
       - run: npm install
       - run: npm run build
-      - run: cd dist
-      - run: ./deploy.sh
+      - run: git config --global -l
+      - run: git config --global user.email circleci@circleci
+      - run: git config --global user.name CircleCI
+      - run: cd dist/ && git init
+      - run: cd dist/ && git add --all
+      - run: cd dist/ && git commit -m "CircleCI Deploy (`date '+%F %T %Z'`)" || true
+      - run: cd dist/ && git push -f origin gh-pages
 workflows:
   version: 2.1
   main:
