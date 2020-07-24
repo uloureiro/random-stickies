@@ -32,6 +32,6 @@ workflows:
   deploy:
     jobs:
       - build
-      - publish
+      - publish:
         requires:
           - build
