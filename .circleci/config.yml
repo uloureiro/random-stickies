@@ -12,6 +12,8 @@ jobs:
       - checkout
       - run: npm install
       - run: npm run build
+      - run: cd dist
+      - checkout
       - run: ./deploy.sh
 workflows:
   version: 2.1
