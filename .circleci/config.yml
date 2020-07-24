@@ -9,29 +9,30 @@ jobs:
       - run: npm install
       - run: npm run build
       - persist_to_workspace:
-        root: .
-        paths: dist
+          root: .
+          paths:
+            - dist
   app-publish:
     docker:
       - image: 'node:12.18.2'
     steps:
       - checkout
       - attach_workspace:
-        at: app
+          at: app
       - run:
-        name: Install and configure dependencies
-        command: |
-          npm install -g --silent gh-pages
-          git config user.email "circleci@circleci"
-          git config user.name "ci-build"
+          name: Install and configure dependencies
+          command: |
+            npm install -g --silent gh-pages
+            git config user.email "circleci@circleci"
+            git config user.name "ci-build"
       - run:
-        name: Deploy app to gh-pages branch
-        command: gh-pages --dist app/dist
+          name: Deploy app to gh-pages branch
+          command: gh-pages --dist app/dist
 workflows:
   version: 2
   app-deploy:
     jobs:
       - app-build
       - app-publish:
-        requires:
-          - app-build
+          requires:
+            - app-build
