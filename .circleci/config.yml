@@ -43,3 +43,6 @@ workflows:
       - app-publish:
           requires:
             - app-build
+          filters:
+            branches:
+              only: master
