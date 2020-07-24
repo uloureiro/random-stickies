@@ -18,7 +18,7 @@ jobs:
       - run: cd dist/ && git init
       - run: cd dist/ && git add --all
       - run: cd dist/ && git commit -m "CircleCI Deploy (`date '+%F %T %Z'`)" || true
-      - run: cd dist/ && git push -f origin gh-pages
+      - run: cd dist/ && git push -f git@github.com:uloureiro/random-stickies.git master:gh-pages
 workflows:
   version: 2.1
   main:
