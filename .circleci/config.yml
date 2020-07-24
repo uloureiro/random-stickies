@@ -1,10 +1,7 @@
 version: 2
 
-orbs:
-  node: circleci/node@3.0.1
-
 jobs:
-  build:
+  app-build:
     docker:
       - image: 'node:12.18.2'
     steps:
@@ -14,7 +11,7 @@ jobs:
       - persist_to_workspace:
         root: .
         paths: dist
-  publish:
+  app-publish:
     docker:
       - image: 'node:12.18.2'
     steps:
@@ -32,9 +29,9 @@ jobs:
         command: gh-pages --dist app/dist
 workflows:
   version: 2
-  deploy:
+  app-deploy:
     jobs:
-      - build
-      - publish:
+      - app-build
+      - app-publish:
         requires:
-          - build
+          - app-build
