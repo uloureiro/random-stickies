@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/uloureiro/random-stickies.svg?branch=master)](https://travis-ci.org/uloureiro/random-stickies)
+[![Build Status](https://travis-ci.org/uloureiro/random-stickies.svg?branch=master)](https://travis-ci.org/uloureiro/random-stickies) [![uloureiro](https://circleci.com/gh/uloureiro/random-stickies.svg?style=svg)](https://app.circleci.com/pipelines/github/uloureiro/random-stickies?branch=master)
 
 # random-stickies
 

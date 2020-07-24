@@ -1,0 +1,48 @@
+version: 2
+
+jobs:
+  app-build:
+    docker:
+      - image: 'node:12.18.2'
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: npm install
+      - run:
+          name: Build app
+          command: npm run build
+      - persist_to_workspace:
+          root: .
+          paths:
+            - dist
+  app-publish:
+    docker:
+      - image: 'node:12.18.2'
+    steps:
+      - checkout
+      - attach_workspace:
+          at: app
+      - run:
+          name: Install and configure dependencies
+          command: |
+            npm install -g --silent gh-pages
+            git config user.email "circleci@circleci"
+            git config user.name "ci-build"
+      - add_ssh_keys:
+          fingerprints:
+            - "0c:42:28:bb:99:73:9b:50:2a:e0:7e:e9:8d:f2:54:51"
+      - run:
+          name: Deploy app to gh-pages branch
+          command: gh-pages --message "[skip ci] Circle CI deploy" --dist app/dist
+workflows:
+  version: 2
+  app-deploy:
+    jobs:
+      - app-build
+      - app-publish:
+          requires:
+            - app-build
+          filters:
+            branches:
+              only: master
