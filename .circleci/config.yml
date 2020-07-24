@@ -12,15 +12,27 @@ jobs:
       - checkout
       - run: npm install
       - run: npm run build
-      - run: git config --global -l
-      - run: git config --global user.email circleci@circleci
-      - run: git config --global user.name CircleCI
-      - run: cd dist/ && git init
-      - run: cd dist/ && git add --all
-      - run: cd dist/ && git commit -m "CircleCI Deploy (`date '+%F %T %Z'`)" || true
-      - run: cd dist/ && git push -f git@github.com:uloureiro/random-stickies.git master:gh-pages
+  publish:
+    docker:
+      - image: 'node:12.18.2'
+    steps:
+      - checkout
+      - attach_workspace:
+        at: dist
+      - run:
+        name: Install and configure dependencies
+        command: |
+          npm install -g --silent gh-pages
+          git config user.email "circleci@circleci"
+          git config user.name "ci-build"
+      - run:
+        name: Deploy app to gh-pages branch
+        command: gh-pages --dist dist
 workflows:
   version: 2.1
-  main:
+  deploy:
     jobs:
-      - build-and-publish
+      - build
+      - publish
+        requires:
+          - build
