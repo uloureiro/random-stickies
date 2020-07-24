@@ -6,8 +6,12 @@ jobs:
       - image: 'node:12.18.2'
     steps:
       - checkout
-      - run: npm install
-      - run: npm run build
+      - run:
+          name: Install dependencies
+          command: npm install
+      - run:
+          name: Build app
+          command: npm run build
       - persist_to_workspace:
           root: .
           paths:
@@ -25,9 +29,12 @@ jobs:
             npm install -g --silent gh-pages
             git config user.email "circleci@circleci"
             git config user.name "ci-build"
+      - add_ssh_keys:
+          fingerprints:
+            - "0c:42:28:bb:99:73:9b:50:2a:e0:7e:e9:8d:f2:54:51"
       - run:
           name: Deploy app to gh-pages branch
-          command: gh-pages --dist app/dist
+          command: gh-pages --message "[skip ci] Circle CI deploy"--dist app/dist
 workflows:
   version: 2
   app-deploy:
