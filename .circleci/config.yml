@@ -34,7 +34,7 @@ jobs:
             - "0c:42:28:bb:99:73:9b:50:2a:e0:7e:e9:8d:f2:54:51"
       - run:
           name: Deploy app to gh-pages branch
-          command: gh-pages --message "[skip ci] Circle CI deploy"--dist app/dist
+          command: gh-pages --message "[skip ci] Circle CI deploy" --dist app/dist
 workflows:
   version: 2
   app-deploy:
