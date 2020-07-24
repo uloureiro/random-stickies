@@ -2,6 +2,8 @@
 
 # random-stickies
 
+See it running here: https://uloureiro.github.io/random-stickies/
+
 ## Project setup
 ```
 npm install
